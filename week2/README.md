@@ -1,5 +1,5 @@
 # Player Lineup
-A quick baseball lineupt generator game to practice the basics of ReactJS. 
+A quick baseball lineup generator game to practice the basics of ReactJS. 
 
 ### `npm start`
 
