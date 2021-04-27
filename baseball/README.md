@@ -15,7 +15,6 @@ Copy contents into source and add Bootstrap and Formik
 
 ```
 npm install react-bootstrap bootstrap
-npm install formik --save
 
 ```
 
@@ -29,9 +28,11 @@ npm start
 In your web browser navigate to your localhost root
 
 #### Roadmap
-- Add Batting Order
-- Pull Team Roster
+- Draggable Fields
+- Pull Team Roster (API)
 - Add Positional UI
+- Refactor Code
+- Better State Management
 
 ### License
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

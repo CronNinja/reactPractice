@@ -1,30 +1,49 @@
-import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
+import React from 'react';
 import Options from './Options.js'
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 
-const initialValues = {
-  lineup: [
-    {
-      player: '',
-      position: '',
-      number: ''
-    },
-  ],
-};
+const blankPlayer = {
+  player: '',
+  position: '',
+  number: ''
+}
+
+
 const positions = ['DH', 'SP', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF'];
 
 const PlayersForm = () => {
+  const [lineup, setLineup] = React.useState([]);
+
+  const handleAddLine = () => {
+    setLineup([...lineup, blankPlayer]);
+  }
+  const savePlayer = (e) => {
+    let index = e.target.id.split('.')[1];
+    if(lineup[index]){
+      lineup[index] = {
+        player: document.getElementById(`lineup.${index}.player`).value,
+        number: document.getElementById(`lineup.${index}.number`).value,
+        position: document.getElementById(`lineup.${index}.position`).value
+      }
+    }else{
+      setLineup([...lineup,{
+        player: document.getElementById(`lineup.${index}.player`).value,
+        number: document.getElementById(`lineup.${index}.number`).value,
+        position: document.getElementById(`lineup.${index}.position`).value
+    }])
+    }
+  }
+  const removePlayer = (e) => {
+    let index = e.target.id.split('.')[1];
+    let newLineup = [...lineup]
+    if(lineup[index]){
+      newLineup = lineup.filter((p, i) => i != index);
+    }
+    setLineup(newLineup);
+  }
+
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={async (values) => {
-        await new Promise((r) => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
-      }}
-    >
-      {({ values }) => (
-        <Form>
         <Table key='lineupTable' striped bordered hover>
           <thead>
             <tr>
@@ -35,87 +54,76 @@ const PlayersForm = () => {
             </tr>
           </thead>
         <tbody>
-          <FieldArray name="lineup">
-            {({ remove, push }) => (
-              <>
-              {values.lineup.length > 0 &&
-                values.lineup.map((player, index) => (
-                <tr key={`lineup.${index}`}>
+          {lineup && lineup.length > 0 ?(
+            lineup.map((value, index) =>(
+                <tr key={index}>
                   <td>
-                  <Field
-                    name={`lineup.${index}.player`}
+                  <input
+                    id={`lineup.${index}.player`}
                     key={`lineup.${index}.player.field`}
                     type="text"
                     required
                   />
-                  <ErrorMessage
-                    name={`lineup.${index}.player`}
-                    key={`lineup.${index}.player.error`}
-                    component="div"
-                    className="field-error"
-                  />
                   </td>
                   <td>
-                    <Field
-                      name={`lineup.${index}.number`}
+                    <input
+                      id={`lineup.${index}.number`}
                       key={`lineup.${index}.number.field`}
                       type="number"
                       required
                     />
-                    <ErrorMessage
-                      name={`lineup.${index}.number`}
-                      key={`lineup.${index}.number.error`}
-                      component="div"
-                      className="field-error"
-                    />
                   </td>
                   <td>
-                    <Field
-                      name={`lineup.${index}.position`}
-                      as="select"
+                  <select
+                      id={`lineup.${index}.position`}
                     >
                       <option value="">Select a Position</option>
                       {positions.map((position, index) => {
                         return <Options key={`lineup.postion.option.${index}`} value={position} index={index}/>
                       })}
-                    </Field>
-                    <ErrorMessage
-                      name={`lineup.${index}.position`}
-                      key={`lineup.${index}.position.error`}
-                      component="div"
-                      className="field-error"
-                    />
+                    </select>
                   </td>
                   <td>
                     <Button
                       variant="danger"
+                      id={`lineup.${index}.delete`}
                       key={`lineup.${index}.delete`}
-                      className="secondary"
-                      onClick={() => remove(index)}
+                      onClick={removePlayer}
                     >
                       Remove
                     </Button>
                     <Button
                       variant="success"
                       key={`lineup.${index}.add`}
-                      className="secondary"
-                      onClick={() => push({ player: '', position: '' })}
+                      id={`lineup.${index}.add`}
+                      onClick={savePlayer}
                     >
-                    New
-                  </Button>
+                      Save
+                    </Button>
                 </td>
-                </tr>
-                ))}
-                </>
-            )}
-          </FieldArray>
+              </tr>
+          ))) : (
+            <></>
+          )
+          }
           </tbody>
+          <tfoot>
+            <tr>
+              <td>
+              <Button
+                variant="success"
+                name={`lineup.addButton`}
+                onClick={handleAddLine}
+              >
+                New
+              </Button>
+              </td>
+              <td>
+                <Button type="submit" onClick={() => console.log(lineup)}>Submit Lineup</Button>
+              </td>
+            </tr>
+          </tfoot>
           </Table>
-            <hr />
-            <Button type="submit">Submit Lineup</Button>
-        </Form>
-      )}
-    </Formik>
   )
  
 }
