@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/reactPractice/atm/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/reactPractice/atm/static/js/main.607bc079.chunk.js",
+    "main.js.map": "/reactPractice/atm/static/js/main.607bc079.chunk.js.map",
+    "runtime-main.js": "/reactPractice/atm/static/js/runtime-main.36c9ec3b.js",
+    "runtime-main.js.map": "/reactPractice/atm/static/js/runtime-main.36c9ec3b.js.map",
+    "static/css/2.150d169a.chunk.css": "/reactPractice/atm/static/css/2.150d169a.chunk.css",
+    "static/js/2.69a2fb47.chunk.js": "/reactPractice/atm/static/js/2.69a2fb47.chunk.js",
+    "static/js/2.69a2fb47.chunk.js.map": "/reactPractice/atm/static/js/2.69a2fb47.chunk.js.map",
+    "static/js/3.f92fb6ce.chunk.js": "/reactPractice/atm/static/js/3.f92fb6ce.chunk.js",
+    "static/js/3.f92fb6ce.chunk.js.map": "/reactPractice/atm/static/js/3.f92fb6ce.chunk.js.map",
+    "index.html": "/reactPractice/atm/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/reactPractice/atm/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.6dea0f05.chunk.css.map": "/reactPractice/atm/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.69a2fb47.chunk.js.LICENSE.txt": "/reactPractice/atm/static/js/2.69a2fb47.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.36c9ec3b.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.69a2fb47.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.607bc079.chunk.js"
+  ]
+}
